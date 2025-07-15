@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<style>
+    @media print{
+        body * {
+            visibility: hidden;
+        }
+
+        #area-impressao, #area-impressao * {
+            visibility: visible
+        }
+
+        #area-impressao {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+        }
+
+        .ocultar-impressao, .navbar, .footer{
+            display: none !important;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<br>
+<div class="container mb-5" id="area-impressao">
+    <h3>{{ grupo[0:10] }}</h3>
+    <h3>Grupo das {{ grupo[10:15] }}</h3>
+    <br>
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col col-7">
+                    <strong>Nome</strong>
+                </div>
+                <div class="col col-3" style="text-align:center">
+                    <strong>Membro de Igreja?</strong>
+                </div>
+                <div class="col col-2 ocultar-impressao">
+                    <strong>Editar / Excluir</strong>
+                </div>
+
+            </div>
+            {% for participante in participantes %}
+            <div  class="row border mt-2">
+                <div class="col col-7">
+                    {{ participante.nome }}
+                </div>
+                <div class="col col-3" style="text-align:center">
+                    {{ participante.membro_igreja }}
+                </div>
+                <div class="col col-2 ocultar-impressao">
+                    <a href="{{ url_for('editar', participante_id=participante.id) }}"><img src="/static/editar.png" alt="Editar" width="20" class="mb-1 me-2 ms-3"></a>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#modalExcluir"><img src="/static/excluir.png" width="20" class="mb-1 ms-3"></a>
+                </div>
+            </div>
+            <div class="modal fade" id="modalExcluir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Excluir Participante</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Tem certeza que deseja excluir?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <form method="POST" action="{{ url_for('excluir', participante_id=participante.id) }}">
+          <button type="submit" class="btn btn-danger">Excluir</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+            {% endfor %}
+        </div>
+</div>
+
+<div class="container">
+    <form method="POST" action="" class="border p-4 me-4">
+        {{ form_listar.csrf_token }}
+        <legend>Selecione data e horário</legend>
+        <fieldset>
+            <div class="form-group mt-2">
+                <strong>{{ form_listar.data.label(class="form-select-label") }}</strong>
+                {{ form_listar.data(class="form-select") }}
+            </div>
+            <div class="form-group mt-2">
+                <strong>{{ form_listar.horario.label(class="form-select-label") }}</strong>
+                {{ form_listar.horario(class="form-select") }}
+            </div>
+        </fieldset>
+            {{ form_listar.botao_submit_listar(class="btn btn-primary mt-4") }}
+            <button onclick="window.print()" class="btn btn-secondary mt-4">Imprimir</button>
+    </form>
+
+</div>
+
+
+
+<div class="mt-5">
+
+</div>
+{% endblock %}

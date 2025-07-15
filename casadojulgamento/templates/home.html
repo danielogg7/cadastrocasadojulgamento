@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<br>
+<div class="container mt-5">
+  <h3><i>Bem-vindo(a) ao sistema de cadastro da Casa do Julgamento!</i></h3>
+  <h3><i>Para cadastrar ou listar participantes, use a barra de navegação acima</i></h3>
+</div>
+<div class="card bg-light mt-5 ms-5" style="width: 30rem;">
+  <div class="card-body">
+    <h3 class="card-title" style="color:#971E1D">Estatística Parcial</h3>
+  <br>
+  <h5><i class="text-muted">Quantidade total de participantes:</i> {{ quantidade_total }}</h5>
+  <h5><i class="text-muted">Membros de igreja:</i> {{ quantidade_cristaos }} ({{ "{0:.1f}".format(percentual_cristaos) }}%)</h5>
+  <h5><i class="text-muted">Não são membros de igreja:</i> {{ quantidade_nao_cristaos }} ({{ "{0:.1f}".format(percentual_nao_cristaos) }}%)</h5>
+  </div>
+</div>
+
+
+
+{% endblock %}

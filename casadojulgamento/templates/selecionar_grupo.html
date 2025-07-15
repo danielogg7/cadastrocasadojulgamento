@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="container">
+    <form method="POST" action="" class="border p-4 me-4">
+        {{ form_listar.csrf_token }}
+        <legend>Selecione data e horário</legend>
+        <fieldset>
+            <div class="form-group mt-2">
+                <strong>{{ form_listar.data.label(class="form-select-label") }}</strong>
+                {{ form_listar.data(class="form-select") }}
+            </div>
+            <div class="form-group mt-2">
+                <strong>{{ form_listar.horario.label(class="form-select-label") }}</strong>
+                {{ form_listar.horario(class="form-select") }}
+            </div>
+        </fieldset>
+            {{ form_listar.botao_submit_listar(class="btn btn-primary mt-4") }}
+    </form>
+
+</div>
+
+
+<div class="mt-5">
+
+</div>
+{% endblock %}
