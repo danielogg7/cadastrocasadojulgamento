@@ -21,8 +21,10 @@ def home():
 @app.route("/cadastro", methods=["GET", "POST"])
 def cadastro():
     form_cadastro = ParticipanteForm()
-
     quantidade = 0
+
+    if request.method == "GET":
+        quantidade = Participante.query.filter_by(grupo='23/08/202514:00').count()
 
     if form_cadastro.validate_on_submit():
         data = form_cadastro.data.data
