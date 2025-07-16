@@ -126,7 +126,6 @@ def editar(participante_id):
 def excluir(participante_id):
 
     participante = Participante.query.get(participante_id)
-    print(participante.nome)
     horario = participante.horario
     data = participante.grupo[0:10]
 

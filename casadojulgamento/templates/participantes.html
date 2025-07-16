@@ -29,7 +29,11 @@
 <br>
 <div class="container mb-5" id="area-impressao">
     <h3>{{ grupo[0:10] }}</h3>
-    <h3>Grupo das {{ grupo[10:15] }}</h3>
+    {% if grupo == "": %}
+        <h3> Grupo das 14:00</h3>
+    {% else %}
+        <h3> Grupo das {{ grupo[10:15] }}</h3>
+    {% endif %}
     <br>
         <div class="container mt-3">
             <div class="row">
