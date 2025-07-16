@@ -124,12 +124,12 @@ def editar(participante_id):
 def excluir(participante_id):
 
     participante = Participante.query.get(participante_id)
-    print(participante)
+    print(participante.nome)
     horario = participante.horario
     data = participante.grupo[0:10]
 
     database.session.delete(participante)
     database.session.commit()
-    flash('Excluído com sucesso', 'alert-success')
+    flash(f'{participante.nome} excluído com sucesso', 'alert-success')
 
     return redirect(url_for('participantes', horario=horario, data=data))
