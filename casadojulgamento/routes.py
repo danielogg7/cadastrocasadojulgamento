@@ -120,7 +120,7 @@ def editar(participante_id):
     return render_template('editar.html', quantidade=quantidade, participante=participante, form_cadastro=form_cadastro)
 
 
-@app.route('/editar/<participante_id>/excluir', methods=['GET', 'POST'])
+@app.route('/participantes/<participante_id>/excluir', methods=['GET', 'POST'])
 def excluir(participante_id):
 
     participante = Participante.query.get(participante_id)
