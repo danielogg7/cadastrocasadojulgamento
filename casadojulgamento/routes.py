@@ -13,8 +13,80 @@ def home():
     quantidade_total = Participante.query.count()
     quantidade_cristaos = Participante.query.filter_by(membro_igreja="Sim").count()
     quantidade_nao_cristaos = Participante.query.filter_by(membro_igreja="Não").count()
-    percentual_cristaos = (quantidade_cristaos / quantidade_total) * 100
-    percentual_nao_cristaos = (quantidade_nao_cristaos / quantidade_total) * 100
+    percentual_cristaos = 0
+    if quantidade_total > 0:
+        percentual_cristaos = (quantidade_cristaos / quantidade_total) * 100
+    percentual_nao_cristaos = 0
+    if quantidade_total > 0:
+        percentual_nao_cristaos = (quantidade_nao_cristaos / quantidade_total) * 100
+
+    #Dia 19
+    quantidade_total_19 = Participante.query.filter(Participante.grupo.like('%19/08/2025%')).count()
+    quantidade_cristaos_19 = Participante.query.filter(Participante.grupo.like('%19/08/2025%'), Participante.membro_igreja=="Sim").count()
+    quantidade_nao_cristaos_19 = Participante.query.filter(Participante.grupo.like('%19/08/2025%'), Participante.membro_igreja=="Não").count()
+    percentual_cristaos_19 = 0
+    if quantidade_total_19 > 0:
+        percentual_cristaos_19 = (quantidade_cristaos_19 / quantidade_total_19) * 100
+    percentual_nao_cristaos_19 = 0
+    if quantidade_total_19 > 0:
+        percentual_nao_cristaos_19 = (quantidade_nao_cristaos_19 / quantidade_total_19) * 100
+
+    #Dia 23
+    quantidade_total_23 = Participante.query.filter(Participante.grupo.like('%23/08/2025%')).count()
+    quantidade_cristaos_23 = Participante.query.filter(Participante.grupo.like('%23/08/2025%'), Participante.membro_igreja=="Sim").count()
+    quantidade_nao_cristaos_23 = Participante.query.filter(Participante.grupo.like('%23/08/2025%'), Participante.membro_igreja=="Não").count()
+    percentual_cristaos_23 = 0
+    if quantidade_total_23 > 0:
+        percentual_cristaos_23 = (quantidade_cristaos_23 / quantidade_total_23) * 100
+    percentual_nao_cristaos_23 = 0
+    if quantidade_total_23 > 0:
+        percentual_nao_cristaos_23 = (quantidade_nao_cristaos_23 / quantidade_total_23) * 100
+
+    #Dia 24
+    quantidade_total_24 = Participante.query.filter(Participante.grupo.like('%24/08/2025%')).count()
+    quantidade_cristaos_24 = Participante.query.filter(Participante.grupo.like('%24/08/2025%'),
+                                                       Participante.membro_igreja == "Sim").count()
+    quantidade_nao_cristaos_24 = Participante.query.filter(Participante.grupo.like('%24/08/2025%'), Participante.membro_igreja == "Não").count()
+    percentual_cristaos_24 = 0
+    if quantidade_total_24 > 0:
+        percentual_cristaos_24 = (quantidade_cristaos_24 / quantidade_total_24) * 100
+    percentual_nao_cristaos_24 = 0
+    if quantidade_total_24 > 0:
+        percentual_nao_cristaos_24 = (quantidade_nao_cristaos_24 / quantidade_total_24) * 100
+
+    # Dia 30
+    quantidade_total_30 = Participante.query.filter(Participante.grupo.like('%30/08/2025%')).count()
+    quantidade_cristaos_30 = Participante.query.filter(Participante.grupo.like('%30/08/2025%'),
+                                                       Participante.membro_igreja == "Sim").count()
+    quantidade_nao_cristaos_30 = Participante.query.filter(Participante.grupo.like('%30/08/2025%'),
+                                                           Participante.membro_igreja == "Não").count()
+    percentual_cristaos_30 = 0
+    if quantidade_total_30 > 0:
+        percentual_cristaos_30 = (quantidade_cristaos_30 / quantidade_total_30) * 100
+    percentual_nao_cristaos_30 = 0
+    if quantidade_total_30 > 0:
+        percentual_nao_cristaos_30 = (quantidade_nao_cristaos_30 / quantidade_total_30) * 100
+
+    # Dia 31
+    quantidade_total_31 = Participante.query.filter(Participante.grupo.like('%31/08/2025%')).count()
+    quantidade_cristaos_31 = Participante.query.filter(Participante.grupo.like('%31/08/2025%'),
+                                                       Participante.membro_igreja == "Sim").count()
+    quantidade_nao_cristaos_31 = Participante.query.filter(Participante.grupo.like('%31/08/2025%'),
+                                                           Participante.membro_igreja == "Não").count()
+    percentual_cristaos_31 = 0
+    if quantidade_total_31 > 0:
+        percentual_cristaos_31 = (quantidade_cristaos_31 / quantidade_total_31) * 100
+    percentual_nao_cristaos_31 = 0
+    if quantidade_total_31 > 0:
+        percentual_nao_cristaos_31 = (quantidade_nao_cristaos_31 / quantidade_total_31) * 100
+
+    return render_template("home.html", quantidade_total=quantidade_total, quantidade_cristaos=quantidade_cristaos, quantidade_nao_cristaos= quantidade_nao_cristaos, percentual_cristaos= percentual_cristaos, percentual_nao_cristaos = percentual_nao_cristaos,
+                           quantidade_total_19=quantidade_total_19, quantidade_cristaos_19=quantidade_cristaos_19, quantidade_nao_cristaos_19= quantidade_nao_cristaos_19, percentual_cristaos_19= percentual_cristaos_19, percentual_nao_cristaos_19 = percentual_nao_cristaos_19,
+                           quantidade_total_23=quantidade_total_23, quantidade_cristaos_23=quantidade_cristaos_23, quantidade_nao_cristaos_23= quantidade_nao_cristaos_23, percentual_cristaos_23= percentual_cristaos_23, percentual_nao_cristaos_23 = percentual_nao_cristaos_23,
+                           quantidade_total_24=quantidade_total_24, quantidade_cristaos_24=quantidade_cristaos_24, quantidade_nao_cristaos_24= quantidade_nao_cristaos_24, percentual_cristaos_24= percentual_cristaos_24, percentual_nao_cristaos_24 = percentual_nao_cristaos_24,
+                           quantidade_total_30=quantidade_total_30, quantidade_cristaos_30=quantidade_cristaos_30, quantidade_nao_cristaos_30= quantidade_nao_cristaos_30, percentual_cristaos_30= percentual_cristaos_30, percentual_nao_cristaos_30 = percentual_nao_cristaos_30,
+                           quantidade_total_31=quantidade_total_31, quantidade_cristaos_31=quantidade_cristaos_31, quantidade_nao_cristaos_31= quantidade_nao_cristaos_31, percentual_cristaos_31= percentual_cristaos_31, percentual_nao_cristaos_31 = percentual_nao_cristaos_31)
+
     return render_template("home.html", quantidade_total=quantidade_total, quantidade_cristaos=quantidade_cristaos, quantidade_nao_cristaos= quantidade_nao_cristaos, percentual_cristaos= percentual_cristaos, percentual_nao_cristaos = percentual_nao_cristaos)
 
 
@@ -24,7 +96,8 @@ def cadastro():
     quantidade = 0
 
     if request.method == "GET":
-        quantidade = Participante.query.filter_by(grupo='23/08/202514:00').count()
+        primeiro_grupo = datetime.today().strftime('%d/%m/%Y')+'14:00'
+        quantidade = Participante.query.filter_by(grupo=primeiro_grupo).count()
 
     if form_cadastro.validate_on_submit():
         data = form_cadastro.data.data
@@ -37,16 +110,17 @@ def cadastro():
         else:
             membro_igreja = "Não"
 
-        if quantidade < 15:
+        if quantidade < 18:
             participante = Participante(nome=form_cadastro.nome.data, membro_igreja=membro_igreja, horario=horario, grupo=grupo)
             database.session.add(participante)
             database.session.commit()
             quantidade = Participante.query.filter_by(grupo=grupo).count()
             flash('Cadastro realizado com sucesso', 'alert-success')
+            form_cadastro.nome.data = ""
 
         #return redirect(url_for("cadastro", horario=horario))
-        elif  quantidade >= 15:
-            flash('O grupo não pode ter mais de 15 participantes.', 'alert-danger')
+        elif  quantidade >= 18:
+            flash('O grupo não pode ter mais de 18 participantes.', 'alert-danger')
 
     return render_template("cadastro.html", form_cadastro=form_cadastro, quantidade=quantidade)
 
@@ -108,8 +182,8 @@ def editar(participante_id):
         participante.horario = horario_novo
         participante.grupo = grupo_novo
         participante.data = datetime.now()
-        if quantidade >= 15 and grupo_novo != grupo:
-            flash('O grupo não pode ter mais de 15 participantes.', 'alert-danger')
+        if quantidade >= 18 and grupo_novo != grupo:
+            flash('O grupo não pode ter mais de 18 participantes.', 'alert-danger')
         else:
             database.session.commit()
             flash('Cadastro alterado com sucesso', 'alert-success')
